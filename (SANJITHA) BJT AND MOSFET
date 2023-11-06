@@ -1,0 +1,221 @@
+def fixed(VCC,VCE,IC):
+    RC=(VCC-VCE)/IC
+    print("THE VALUE OF RC=",RC)
+    return RC
+def IC_fixed(VCC,VCE,RC):
+    IC=(VCC-VCE)/RC
+    print("the value of IC=",IC)
+    return IC
+def IB_fixed(VCC,VBE,RB):
+    IB=(VCC-VBE)/RB
+    print("the value of IB=",IB)
+    return IB
+def RB_fixed(VCC,VBE,IB):
+    RB=(VCC-VBE/IB)
+    print("the value of RB=",RB)
+    return RB
+def IB_emit(VCC,VBE,RE,RB,BETA):
+    IB=(VCC-VBE)/(RB+(BETA*RE))
+    print("the value of IB=",IB)
+    return IB
+def IC_emit(VCC,VCE,RE,RC):
+    IC=(VCC-VCE)/(RC+RE)
+    print("THE value of IC=",IC)
+    return IC
+def IB_vol(Eth,Rth,RE,VBE,BETA):
+    IB=(Eth-VBE)/(Rth+((BETA+1)*RE))
+    print("the value of IB=",IB)
+    return IB 
+def IB_col(VCC,VBE,RC,RE,RB,BETA):
+    IB=(VCC-VBE)/(RB+(BETA*(RC+RE)))
+    print("the value of IB=",IB)
+    return IB
+def fic_mos(VGG):
+    VCC=VGG
+    print("the value of VCC=",VGG)
+    return VCC
+def fic_vds(VDD,ID,RS):
+    VDS=VDD-(ID*RS)
+    print("THE VALUE OF VDS=",VDS)
+    return VDS
+def vol_vg(R2,R1,VDD,IS,RS):
+    VG=(R2*VDD)/(R1+R2)
+    print("THE VALUE OF VG=",VG)
+    VGS=VG-(IS*RS)
+    print("THE VALUE OF VGS=",VGS)
+    return VG,VGS
+def rc(VCC,VCE,IC):
+    RC=(VCC-VCE)/IC
+    print("THE VALUE OF RC=",RC)
+    return RC
+def rth(Eth,IB,VBE,BETA,RE):
+    Rth=(Eth-VBE)/IB- (BETA+1)*RE*IB
+    print("the value of Rth =",Rth)
+    return Rth
+def rb_col(VCC,VCE,BETA,RC,RE,IB):
+    RB=((VCC-VCE)/IB)-((BETA)*(RC+RE)*IB)
+    print("THE VALUE OF RB=",RB)
+    return RB
+    
+print("WELCOME TO THE WORLD OF TRANSISTORS")
+print("IT'S TIME TO CHOOSE YOUR TRANSISTOR...")
+
+trans=int(input(print("THE OPTIONS ARE  1.BJT  2.MOSFET  ")))
+if trans==1:
+    print("you have chosen BJT ,LET'S FIND OUT THE UNKNOWNS ")
+    a=int(input(print("MENTION THE TYPE OF BIAS 1.fixed bias  2.emitter bias 3.Voltage-divider bias  4.collector-feedback bias     ")))
+    if a==1:
+        b=int(input(print ("DO YOU WANT TO FIND 1) Rc  2)IC  3)IB  4)RB ?")))
+        if b==1:
+            VCC=int(input(print ("value of VCC=" )))
+            VCE=int(input(print ("value of VCE=" )) )
+            IC=int(input(print ("value of IC=" )))
+            fixed(VCC,VCE,IC)
+            BETA=int(input(print("value of beta=")))
+            print("THE VALUE OF IB=",IC/BETA)
+        elif b==2:
+            VCC=int(input(print ("value of VCC=" )))
+            VCE=int(input(print ("value of VCE=" )) )
+            RC=int(input(print ("value of RC=" )))
+            IC_fixed(VCC,VCE,RC)
+            BETA=int(input(print("value of beta=")))
+            print("THE VALUE OF IB=",IC_fixed(VCC,VCE,RC)/BETA)
+        elif b==3:
+             VCC=int(input(print ("value of VCC=" )))
+             VBE=int(input(print ("value of VBE=" )) )
+             RB=int(input(print ("value of RB=" )))
+             IB_fixed(VCC,VBE,RB)
+             BETA=int(input(print("value of beta=")))
+             print("THE VALUE OF IC=",IB_fixed(VCC,VBE,RB)*BETA)
+        elif b==4:
+             VCC=int(input(print ("value of VCC=" )))
+             VBE=int(input(print ("value of VBE=" )) )
+             IB=int(input(print ("value of IB=" )))
+             RB_fixed(VCC,VBE,IB)  
+             print("THE VALUE OF IB=",IC_fixed(VCC,VCE,RC)/BETA)
+    elif a==2:
+        b=int(input(print ("DO YOU WANT TO FIND  1)IB  2)IC  3)RB  4)RC ?")))             
+        if b==1:
+                VCC=int(input(print ("value of VCC=" )))
+                VBE=int(input(print ("value of VBE=" )) )
+                RE=int(input(print ("value of RE=" )))
+                RB=int(input(print ("value of RB=" )))
+                BETA=int(input(print("value of beta=")))
+                IB_emit(VCC,VBE,RE,RB,BETA)
+                print("THE VALUE OF IC=",IB_emit(VCC,VBE,RE,RB,BETA)*BETA)
+        elif b==2:
+            VCC=int(input(print("value of VCC=" )))
+            VCE=int(input(print("value of VCE=" )) )
+            RE=int(input(print("value of RE=" )))
+            RC=int(input(print("value of RC=" )))
+            BETA=int(input(print("value of beta=")))
+            IC_emit(VCC,VCE,RE,RC)
+            print("THE VALUE OF IB=",IC_emit(VCC,VCE,RE,RC)/BETA)
+        elif b==3:
+            VCC=int(input(print ("value of VCC=" )))
+            VBE=int(input(print ("value of VBE=" )) )
+            RE=int(input(print ("value of RE=" )))
+            IB=int(input(print ("value of IB=" )))
+            BETA=int(input(print("value of beta=")))
+            RB=((VCC-VBE)-((BETA+1)*RE*IB))/IB
+            print("the value of RB=",((VCC-VBE)-((BETA+1)*RE*IB))/IB)
+            print("THE VALUE OF IC=",IB*BETA)
+        elif b==4:
+            VCC=int(input(print("value of VCC=" )))
+            VCE=int(input(print("value of VCE=" )) )
+            IC=int(input(print("value of IC=" )))
+            rc(VCC,VCE,IC)
+            BETA=int(input(print("value of beta=")))
+            print("THE VALUE OF IB=",IC/BETA)
+                        
+    elif a==3:
+        b=int(input(print ("DO YOU WANT TO FIND  1)IB  2)IC 3)Rth 4)RC ?")))
+        if b==1:
+            Eth=int(input(print ("value of Eth=" )))
+            VBE=int(input(print ("value of VBE=" )) )
+            Rth=int(input(print ("value of Rth=" )))
+            RE=int(input(print ("value of RE=" )))
+            BETA=int(input(print("value of beta=")))
+            IB_vol(Eth,Rth,RE,VBE,BETA)
+            print("THE VALUE OF IC=",IB_vol(Eth,Rth,RE,VBE,BETA)*BETA) 
+        elif b==2:
+            VCC=int(input(print("value of VCC=" )))
+            VCE=int(input(print("value of VCE=" )) )
+            RE=int(input(print("value of RE=" )))
+            RC=int(input(print("value of RC=" )))
+            BETA=int(input(print("value of beta=")))
+            IC_emit(VCC,VCE,RE,RC)
+            print("THE VALUE OF IB=",IC_emit(VCC,VCE,RE,RC)/BETA)
+        elif b==3:
+            Eth=int(input(print ("value of Eth=" )))
+            VBE=int(input(print ("value of VBE=" )) )
+            IB=int(input(print ("value ofIB=" )))
+            RE=int(input(print ("value of RE=" )))
+            BETA=int(input(print("value of beta=")))
+            rth(Eth,IB,VBE,BETA,RE)
+            print("THE VALUE OF IC=",IB*BETA)
+            
+        elif b==4:
+            VCC=int(input(print("value of VCC=" )))
+            VCE=int(input(print("value of VCE=" )) )
+            IC=int(input(print("value of IC=" )))
+            rc(VCC,VCE,IC)
+            BETA=int(input(print("value of beta=")))
+            print("THE VALUE OF IB=",IC/BETA)
+            
+    elif a==4:
+        b=int(input(print ("DO YOU WANT TO FIND  1)IC  2)IB 3)RB 4)RC   ?")))
+        if b==1:
+            VCC=int(input(print ("value of VCC=" )))
+            VBE=int(input(print ("value of VBE=" )) )
+            RE=int(input(print ("value of RE=" )))
+            RC=int(input(print ("value of RC=" )))
+            BETA=int(input(print("value of beta=")))
+            RB=int(input(print ("value of RB=" )))
+            IB_col(VCC,VBE,RC,RE,RB,BETA)
+            print("THE VALUE OF IC=", IB_col(VCC,VBE,RC,RE,RB,BETA)*BETA)
+        elif b==2:
+            VCC=int(input(print("value of VCC=" )))
+            VCE=int(input(print("value of VCE=" )) )
+            RE=int(input(print("value of RE=" )))
+            RC=int(input(print("value of RC=" )))
+            BETA=int(input(print("value of beta=")))
+            IC_emit(VCC,VCE,RE,RC)
+            print("THE VALUE OF IB=",IC_emit(VCC,VCE,RC,RE)/BETA)
+        elif b==3:
+            VCC=int(input(print ("value of VCC=" )))
+            VCE=int(input(print ("value of VCE=" )) )
+            RE=int(input(print ("value of RE=" )))
+            RC=int(input(print ("value of RC=" )))
+            BETA=int(input(print("value of beta=")))
+            IB=int(input(print ("value of IB=" )))
+            rb_col(VCC,VCE,BETA,RC,RE,IB)
+            print("THE VALUE OF IC=", IB*BETA)
+        elif b==4:
+            VCC=int(input(print("value of VCC=" )))
+            VCE=int(input(print("value of VCE=" )) )
+            IC=int(input(print("value of IC=" )))
+            rc(VCC,VCE,IC)
+            BETA=int(input(print("value of beta=")))
+            print("THE VALUE OF IB=",IC/BETA)
+elif trans==2:
+    print("you have chosen MOSFET")
+    print ("the type of bias available is depletion type")
+    depl=int(input(print("1.fixed 2.voltage")))
+    if depl==1:
+        print("enter the following:")
+        VGG=int(input(print ("value of VGG=")))
+        fic_mos(VGG)
+        print("now let's find VDS")
+        VDD=int(input(print ("value of VDD=" )) )
+        ID=int(input(print ("value of ID=" )))
+        RS=int(input(print ("value of RS=" )))
+        fic_vds(VDD,ID,RS)
+    elif depl==2:
+        print("enter the following:")
+        R2=int(input(print ("value of R2=" )))
+        VDD=int(input(print ("value of VDD =" )) )
+        R1=int(input(print ("value of R1=" )))
+        RS=int(input(print ("value of RS=" )))
+        IS=int(input(print("value of IS=")))
+        vol_vg(R2,R1,VDD,IS,RS,)
